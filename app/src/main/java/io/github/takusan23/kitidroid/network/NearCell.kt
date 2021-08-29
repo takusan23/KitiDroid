@@ -4,24 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.telephony.*
-import androidx.annotation.RequiresApi
 import io.github.takusan23.kitidroid.tool.PermissionCheckTool
-import kotlinx.coroutines.flow.flow
-import java.util.*
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
-import android.telephony.ServiceState
-
-import android.telephony.TelephonyCallback
-import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.coroutineContext
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 /** 近くの基地局取得 */
@@ -37,7 +27,7 @@ object NearCell {
     suspend fun getNearCellList(context: Context): List<CellInfo> {
         val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // Android 10以降。権限があれば
             return suspendCoroutine {
                 if (PermissionCheckTool.isGrantedLocationPermission(context)) {

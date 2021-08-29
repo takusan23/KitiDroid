@@ -12,6 +12,7 @@ object CellInfoReflection {
     /**
      * リフレクションを使ってCellIdentityのメソッドを動的に呼びます。MapのSecondはStringかIntになります。
      * @param cellInfo CellInfo
+     * @return Pairの一番目はメソッド名、二番目はメソッドを呼んだ返り値
      * */
     fun dynamicCellIdentityMethodInvoke(cellInfo: CellInfo): List<Pair<String, Any>> {
         val methods = when {
@@ -50,8 +51,9 @@ object CellInfoReflection {
     }
 
     /**
-     * リフレクションを使ってCellSignalStrengthのメソッドを動的に呼びます。MapのSecondはStringかIntになります。
+     * リフレクションを使ってCellSignalStrengthのメソッドを動的に呼びます。PairのSecondはStringかIntになります。
      * @param cellInfo CellInfo
+     * @return Pairの一番目はメソッド名、二番目はメソッドを呼んだ返り値
      * */
     fun dynamicCellSignalStrengthMethodInvoke(cellInfo: CellInfo): List<Pair<String, Any>> {
         val methods = when {
